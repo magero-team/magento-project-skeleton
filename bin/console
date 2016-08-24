@@ -1,0 +1,87 @@
+#!/usr/bin/env php
+<?php
+/**
+ *  This file is part of the Magento Project Skeleton.
+ *
+ *  (c) Magero team <support@magero.pw>
+ *
+ *  For the full copyright and license information, please view the LICENSE
+ *  file that was distributed with this source code.
+ */
+
+require __DIR__ . '/../magento/app/bootstrap.php';
+require __DIR__ . '/../magento/app/Mage.php';
+
+$args = array();
+
+$currentArg = false;
+$match = false;
+foreach ($_SERVER['argv'] as $arg) {
+    if (preg_match('/^--(.*)$/', $arg, $match)) {
+        // argument name
+        $currentArg = $match[1];
+        // in case if argument doesn't need a value
+        $args[$currentArg] = true;
+    } else {
+        // argument value
+        if ($currentArg) {
+            $args[$currentArg] = $arg;
+        }
+        $currentArg = false;
+    }
+}
+
+try {
+    /** @var Mage_Core_Model_App $app */
+    $app = Mage::app('default');
+
+    switch ($args['action']) {
+        default:
+            echo sprintf("Error: unknown action%s", (!empty($args['action']) ? ' "' . $args['action'] . '"': '')) . PHP_EOL;
+            exit(1);
+            break;
+        case 'reindex':
+            /* @var Mage_Index_Model_Resource_Process_Collection $indexCollection */
+            $indexCollection = Mage::getModel('index/process')->getCollection();
+            foreach ($indexCollection as $index) {
+                /* @var $index Mage_Index_Model_Process */
+                $index->reindexAll();
+                echo 'Index "' . $index->getIndexer()->getName() . '" was updated' . PHP_EOL;
+            }
+            break;
+        case 'config':
+            $configFile = __DIR__ . '/../env/config.csv';
+            if (!empty($args['file'])) {
+                $configFile = $args['file'];
+            }
+            $configFile = realpath($configFile);
+            if (!$configFile || !file_exists($configFile) || !is_file($configFile)) {
+                echo 'Error: configuration file "'. $configFile .'" not found' . PHP_EOL;
+                exit(1);
+            }
+            if (!is_readable($configFile)) {
+                echo 'Error: configuration file "'. $configFile .'" is not readable' . PHP_EOL;
+                exit(1);
+            }
+
+            if (($handle = fopen($configFile, "r")) !== false) {
+                while (($data = fgetcsv($handle, 1000, ";")) !== false) {
+                    if (preg_match('/^[a-zA-Z0-9_\-\/]+$/', $data[0])) {
+                        $app->getConfig()->saveConfig($data[0], (string)$data[1]);
+                    }
+                }
+                fclose($handle);
+                echo 'Configuration file "' . $configFile . '" was applied' . PHP_EOL;
+            } else {
+                echo 'Error: configuration file "' . $configFile . '" can not be opened' . PHP_EOL;
+                exit(1);
+            }
+            break;
+    }
+
+    exit;
+} catch (Exception $e) {
+    Mage::printException($e);
+}
+
+exit(1);
