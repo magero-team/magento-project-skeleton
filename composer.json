@@ -1,0 +1,27 @@
+{
+    "name": "magero/magento-project-skeleton",
+    "description": "Skeleton of Magento project",
+    "keywords": ["Magento", "skeleton"],
+    "homepage": "https://docs.magero.pw/dev-tools/magento-project-skeleton",
+    "license": "MIT",
+    "type": "magento-develop-tool",
+    "require": {
+        "php": ">=5.2.0",
+        "magero/magento-project-synchronizer": "^1.1",
+        "magero/magento-project-installer": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "VVeb Developer",
+            "email": "developer@vveb.pro"
+        }
+    ],
+    "bin": [
+        "bin/console"
+    ],
+    "scripts": {
+        "post-create-project-cmd": [
+            "php -r \"copy('configs/local.conf.dist', 'configs/local.conf');\""
+        ]
+    }
+}

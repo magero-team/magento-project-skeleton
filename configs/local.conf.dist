@@ -1,0 +1,5 @@
+DOMAIN="magento.dev"
+DB_HOST="localhost"
+DB_NAME="magento"
+DB_USER="root"
+DB_PASSWORD=""
