@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# This file is part of the Magento Project Skeleton.
+#
+# (c) Magero team <support@magero.pw>
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+source /lib/lsb/init-functions
+
+ROOT_PATH=$(readlink -f $(dirname $(readlink -f $0))/..)
+
+${ROOT_PATH}/vendor/bin/uninstall-magento
+if [ "$?" -ne "0" ]; then
+    log_failure_msg "Magento uninstalling failed"
+    exit 1
+fi
+rm -r ${ROOT_PATH}/.cache
