@@ -9,23 +9,22 @@
     "packages": [
         {
             "name": "magero/magento-project-installer",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/magero-team/magento-project-installer.git",
-                "reference": "a9361efd6c5470a7cf605d5c78d5cb82e5c05e0b"
+                "reference": "da3433a2b9e1bec1b99d0cb19ea3bc63a3668f36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/magero-team/magento-project-installer/zipball/a9361efd6c5470a7cf605d5c78d5cb82e5c05e0b",
-                "reference": "a9361efd6c5470a7cf605d5c78d5cb82e5c05e0b",
+                "url": "https://api.github.com/repos/magero-team/magento-project-installer/zipball/da3433a2b9e1bec1b99d0cb19ea3bc63a3668f36",
+                "reference": "da3433a2b9e1bec1b99d0cb19ea3bc63a3668f36",
                 "shasum": ""
             },
             "bin": [
-                "bin/installer",
-                "bin/project-install",
-                "bin/project-uninstall",
-                "bin/project-reinstall"
+                "bin/install-magento",
+                "bin/uninstall-magento",
+                "bin/reinstall-magento"
             ],
             "type": "magento-develop-tool",
             "notification-url": "https://packagist.org/downloads/",
@@ -44,7 +43,7 @@
                 "installer",
                 "magento"
             ],
-            "time": "2016-08-21 21:44:24"
+            "time": "2016-08-26 18:59:19"
         },
         {
             "name": "magero/magento-project-synchronizer",
