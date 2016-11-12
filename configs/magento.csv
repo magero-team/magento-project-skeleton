@@ -1,0 +1,4 @@
+"dev/template/allow_symlink";"1"
+"dev/log/active";"1"
+"dev/log/file";"system.log"
+"dev/log/exception_file";"exception.log"

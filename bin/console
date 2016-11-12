@@ -50,7 +50,7 @@ try {
             }
             break;
         case 'config':
-            $configFile = __DIR__ . '/../env/config.csv';
+            $configFile = __DIR__ . '/../configs/magento.csv';
             if (!empty($args['file'])) {
                 $configFile = $args['file'];
             }
