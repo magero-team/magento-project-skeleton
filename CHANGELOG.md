@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.2.1
+-----
+
+ * improved reinstall scripts, fixed packaging
+
 1.2.0
 -----
 
