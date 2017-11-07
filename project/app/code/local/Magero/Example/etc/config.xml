@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magero_Example>
+            <version>0.0.1</version>
+        </Magero_Example>
+    </modules>
+    <global>
+        <helpers>
+            <magero_example>
+                <class>Magero_Example_Helper</class>
+            </magero_example>
+        </helpers>
+    </global>
+</config>
