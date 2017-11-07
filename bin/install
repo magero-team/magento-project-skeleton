@@ -17,6 +17,11 @@ if [ "$?" -ne "0" ]; then
     exit 1
 fi
 
+${ROOT_PATH}/bin/console --action config
+if [ "$?" -ne "0" ]; then
+    log_failure_msg "Magento configuration failed"
+fi
+
 ${ROOT_PATH}/bin/console --action reindex
 if [ "$?" -ne "0" ]; then
     log_failure_msg "Magento reindexing failed"

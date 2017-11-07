@@ -11,12 +11,17 @@ source /lib/lsb/init-functions
 
 ROOT_PATH=$(readlink -f $(dirname $(readlink -f $0))/..)
 
-rm -r ${ROOT_PATH}/.cache
+rm -rf ${ROOT_PATH}/.cache
 
 ${ROOT_PATH}/vendor/bin/reinstall-magento
 if [ "$?" -ne "0" ]; then
     log_failure_msg "Magento reinstalling failed"
     exit 1
+fi
+
+${ROOT_PATH}/bin/console --action config
+if [ "$?" -ne "0" ]; then
+    log_failure_msg "Magento configuration failed"
 fi
 
 ${ROOT_PATH}/bin/console --action reindex

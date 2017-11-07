@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <Magero_Example>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Magero_Example>
+    </modules>
+</config>
