@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.2.0
+-----
+
+ * use new project synchronizer tool, added magento packager
+
 1.1.0
 -----
 
