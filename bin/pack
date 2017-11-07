@@ -11,7 +11,7 @@ source /lib/lsb/init-functions
 
 ROOT_PATH=$(readlink -f $(dirname $(readlink -f $0))/..)
 
-${ROOT_PATH}/vendor/bin/packager pack ${ROOT_PATH}/project -f ${ROOT_PATH}/package.tar.gz
+${ROOT_PATH}/vendor/bin/packager pack ${ROOT_PATH}/project -f ${ROOT_PATH}/package.tgz
 if [ "$?" -ne "0" ]; then
     log_failure_msg "Packaging of project failed"
 fi

@@ -11,6 +11,10 @@ source /lib/lsb/init-functions
 
 ROOT_PATH=$(readlink -f $(dirname $(readlink -f $0))/..)
 
+sudo rm -rf ${ROOT_PATH}/magento/var/cache
+sudo rm -rf ${ROOT_PATH}/magento/var/log
+sudo rm -rf ${ROOT_PATH}/magento/media/captcha
+
 ${ROOT_PATH}/vendor/bin/uninstall-magento
 if [ "$?" -ne "0" ]; then
     log_failure_msg "Magento uninstalling failed"
